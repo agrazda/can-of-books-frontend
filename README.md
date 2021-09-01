@@ -20,8 +20,8 @@ Books are life-changing. They have the power to enlighten, educate, entertain, h
 ## Estimates
 | Time Estimate | Name of Feature | Start Time | Finish Time | Actual Time Needed | Collaborators |
 |:-------------:|:---------------:|------------|-------------|--------------------|---------------|
-|    4hrs       |  Lab 11         |    1:45pm  |             |                    |               |
-|               |  Lab 12         |            |             |                    |               |
+|    4hrs       |  Lab 11         |    1:45pm  |  7:00pm     |     5hr 15min      | Joe(TA)       |
+|    4hr        |  Lab 12         |      5:05p |             |                    |               |
 |               |  Lab 13         |            |             |                    |               |
 |               |  Lab 14         |            |             |                    |               |
 
