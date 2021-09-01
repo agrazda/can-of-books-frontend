@@ -7,6 +7,7 @@ class BestBooks extends React.Component {
     super(props);
     this.state = {
       books: [],
+      isEmpty: false,
     };
   }
 
@@ -17,22 +18,34 @@ class BestBooks extends React.Component {
     try {
       const response = await axios.get(bookUrl);
       this.setState({ books: response.data });
+      this.isEmpty();
       console.log(response.data);
       console.log('test');
+      console.log(this.state.isEmpty);
     } catch (err) {
       console.log(err + 'Error Message Here');
     }
   }
 
-
+    isEmpty() {
+      if (this.state.books.length === 0) {
+        this.setState({
+          isEmpty: true
+        })
+      }
+    }
 
   render() {
     /* TODO: render user's books in a Carousel */
 
     return (
       <>
-        <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
-
+        <h2>Your Personal Book Collection</h2>
+        {this.state.isEmpty  ? 
+        <alert>
+          No books for you!
+        </alert>
+        : ''}
         <Carousel>
           {this.state.books.length &&
             this.state.books.map((book) => {
