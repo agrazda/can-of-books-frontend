@@ -116,15 +116,19 @@ class BestBooks extends React.Component {
                   <Carousel.Caption>
                     <h3>{book.email}</h3>
                     <p>{book.description}</p>
-                  </Carousel.Caption>
-                  {/* <Button variant="danger" onClick={this.handleDelete(book._id)}>Delete ME!!!</Button> */}
+                  <Button variant="danger" onClick={() => this.handleDelete(book._id)}>Delete ME!!!</Button>
                   <Button onClick={() => this.toggleUpdateModal(i)}>Update This Book!</Button>
+                  </Carousel.Caption>
                 </Carousel.Item>
               );
             })}
         </Carousel>
         <BookFormModal showModal= {this.state.showModal} toggleModal={this.toggleModal} handleSubmit={this.handleSubmit}/>
-        <UpdateFormModal showUpdateModal={this.state.showUpdateModal} toggleUpdateModal={this.toggleUpdateModal}/>
+        <UpdateFormModal 
+        showUpdateModal={this.state.showUpdateModal} toggleUpdateModal={this.toggleUpdateModal} 
+        book={this.state.books[this.state.indexOfMap]}
+        handleUpdate={this.handleUpdate}
+        />
         <Button onClick={this.toggleModal}>Add Book</Button>
       </>
     );
