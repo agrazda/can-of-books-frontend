@@ -20,7 +20,7 @@ class Header extends React.Component {
         <NavItem>
           {this.props.auth0.isAuthenticated
             ? <LogoutButton />
-            : <Login />
+            : ''
           }
         </NavItem>
 

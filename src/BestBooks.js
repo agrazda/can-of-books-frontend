@@ -64,7 +64,6 @@ class BestBooks extends React.Component {
     let bookData= {
       title: e.target.formTitle.value,
       description: e.target.formDescription.value,
-      email: e.target.formEmail.value,
     }
     let bookUrl = `http://localhost:3001/books`;
     let config = await this.getConfig();

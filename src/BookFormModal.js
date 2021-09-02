@@ -2,6 +2,7 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import { withAuth0 } from '@auth0/auth0-react';
 
 class BookFormModal extends React.Component {
    
@@ -29,15 +30,6 @@ class BookFormModal extends React.Component {
             <Form.Label>Description</Form.Label>
             <Form.Control type="description" placeholder="bookDescription" />
           </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control type="Email" placeholder="Email" />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
           <Button variant="primary" type="submit">
             Submit
           </Button>
@@ -50,4 +42,4 @@ class BookFormModal extends React.Component {
   }
 }
 
-export default BookFormModal;
+export default withAuth0(BookFormModal);
