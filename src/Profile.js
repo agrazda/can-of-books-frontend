@@ -1,12 +1,22 @@
-import { Component } from "react";
+import React from 'react';
+import { withAuth0 } from '@auth0/auth0-react';
+import Card from 'react-bootstrap/Card';
 
-class Profile extends Component {
+class Profile extends React.Component {
+
 
   render() {
-    /* TODO: render information about logged in user */
-    /* STRETCH TODO: if no logged in user then redirect home */
-    return <p>Profile page coming soon</p>
+    return (
+      <>
+        <Card style={{ width: '18rem', marginBottom: '10px' }} text="white" bg="dark">
+          <Card.Body>
+            <Card.Title>Username: {this.props.auth0.user.nickname}</Card.Title>
+            <Card.Img variant="top" src={this.props.auth0.user.picture} />
+            <Card.Text>Email address: {this.props.auth0.user.email}</Card.Text>
+          </Card.Body>
+        </Card>
+      </>
+    )
   }
-};
-
-export default Profile;
+}
+export default withAuth0(Profile)

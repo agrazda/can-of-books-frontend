@@ -1,10 +1,13 @@
-import { Component } from 'react'
 
-export default class LoginButton extends Component {
+// this code came from the Auth0 documentation, https://auth0.com/docs/quickstart/spa/react?download=true
 
-  render() {
+import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
-    /* TODO: Render a button with label 'Log In'. When the button is clicked then show LoginForm instead */
-    return <p>LoginButton coming soon</p>
-  }
-}
+const LoginButton = () => {
+  const { loginWithRedirect } = useAuth0();
+
+  return <button onClick={() => loginWithRedirect()}>Log In</button>;
+};
+
+export default LoginButton;
