@@ -4,8 +4,11 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
 class BookFormModal extends React.Component {
- 
- handleSubmit = e => {
+ constructor(props) {
+   super(props);
+   this.state= {}
+ }
+ handleSubmit = (e) => {
   e.preventDefault();
   this.props.handleUpdate({
     _id: this.props.book._id,

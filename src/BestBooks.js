@@ -46,7 +46,7 @@ class BestBooks extends React.Component {
     console.log(this.state.showModal);
   }
 
-  async handleSubmit(e) {
+  handleSubmit = async (e) => {
     e.preventDefault();
     let bookData= {
       title: e.target.formTitle.value,
@@ -64,17 +64,17 @@ class BestBooks extends React.Component {
     }
   }
 
-  async handleDelete(id) {
+  handleDelete = async (id) => {
     console.log(id);
     let bookUrl = `http://localhost:3001/books/${id}`;
     let response = await axios.delete(bookUrl);
     let updatedArray = this.state.books.filter(book => book._id !== id);
     this.setState({ books: updatedArray});
     console.log(response);
-
+    console.log("bookDeleted")
   }
 
-  async handleUpdate(bookToUpdate) {
+  handleUpdate = async (bookToUpdate) => {
     let bookUrl = `http://localhost:3001/books/${bookToUpdate._id}`;
     console.log("test");
     try {
@@ -117,7 +117,7 @@ class BestBooks extends React.Component {
                     <h3>{book.email}</h3>
                     <p>{book.description}</p>
                   </Carousel.Caption>
-                  <Button variant="danger" onClick={this.handleDelete(book._id)}>Delete ME!!!</Button>
+                  {/* <Button variant="danger" onClick={this.handleDelete(book._id)}>Delete ME!!!</Button> */}
                   <Button onClick={() => this.toggleUpdateModal(i)}>Update This Book!</Button>
                 </Carousel.Item>
               );
