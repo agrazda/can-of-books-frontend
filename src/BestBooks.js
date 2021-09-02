@@ -2,6 +2,7 @@ import React from "react";
 import { Carousel, Button } from "react-bootstrap";
 import axios from "axios";
 import BookFormModal from "./BookFormModal";
+import UpdateFormModal from "./UpdateFormModal";
 
 class BestBooks extends React.Component {
   constructor(props) {
@@ -10,6 +11,8 @@ class BestBooks extends React.Component {
       books: [],
       isEmpty: false,
       showModal: false,
+      showUpdateModal: false,
+      indexOfMap: 0,
     };
   }
 
@@ -61,6 +64,38 @@ class BestBooks extends React.Component {
     }
   }
 
+  async handleDelete(id) {
+    console.log(id);
+    let bookUrl = `http://localhost:3001/books/${id}`;
+    let response = await axios.delete(bookUrl);
+    let updatedArray = this.state.books.filter(book => book._id !== id);
+    this.setState({ books: updatedArray});
+    console.log(response);
+
+  }
+
+  async handleUpdate(bookToUpdate) {
+    let bookUrl = `http://localhost:3001/books/${bookToUpdate._id}`;
+    console.log("test");
+    try {
+      const response = await axios.put(bookUrl, bookToUpdate);
+      const updatedBook = response.data;
+      const updateBookArray = this.state.books.map(outdatedBook => outdatedBook._id === updatedBook._id ? updatedBook : outdatedBook);
+      this.setState({updateBookArray})
+
+    } catch (err) {
+      console.log(err + "Error Message Here");
+    }
+  }
+  toggleUpdateModal = (i) => {
+    this.setState({
+      showUpdateModal: !this.state.showUpdateModal,
+      indexOfMap: i,
+    });
+    console.log(this.state.showUpdateModal);
+  }
+
+
   render() {
     /* TODO: render user's books in a Carousel */
 
@@ -70,7 +105,7 @@ class BestBooks extends React.Component {
         {this.state.isEmpty ? <alert>No books for you!</alert> : ""}
         <Carousel>
           {this.state.books.length &&
-            this.state.books.map((book) => {
+            this.state.books.map((book, i) => {
               return (
                 <Carousel.Item key={book._id}>
                   <img
@@ -82,11 +117,14 @@ class BestBooks extends React.Component {
                     <h3>{book.email}</h3>
                     <p>{book.description}</p>
                   </Carousel.Caption>
+                  <Button variant="danger" onClick={this.handleDelete(book._id)}>Delete ME!!!</Button>
+                  <Button onClick={() => this.toggleUpdateModal(i)}>Update This Book!</Button>
                 </Carousel.Item>
               );
             })}
         </Carousel>
         <BookFormModal showModal= {this.state.showModal} toggleModal={this.toggleModal} handleSubmit={this.handleSubmit}/>
+        <UpdateFormModal showUpdateModal={this.state.showUpdateModal} toggleUpdateModal={this.toggleUpdateModal}/>
         <Button onClick={this.toggleModal}>Add Book</Button>
       </>
     );
