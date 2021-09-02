@@ -67,10 +67,11 @@ class BestBooks extends React.Component {
     }
     let bookUrl = `http://localhost:3001/books`;
     let config = await this.getConfig();
-    console.log("test");
     try {
+      console.log("test");
       const response = await axios.post(bookUrl, bookData, config);
-      this.setState({ books: response.data });
+      console.log(response.data);
+      this.setState({ books: [...this.state.books,response.data] });
       this.toggleModal();
      
     } catch (err) {
@@ -96,8 +97,10 @@ class BestBooks extends React.Component {
     try {
       const response = await axios.put(bookUrl, bookToUpdate, config);
       const updatedBook = response.data;
+      console.log(updatedBook);
       const updateBookArray = this.state.books.map(outdatedBook => outdatedBook._id === updatedBook._id ? updatedBook : outdatedBook);
-      this.setState({updateBookArray})
+      console.log(updateBookArray);
+      this.setState({books: updateBookArray})
       this.toggleUpdateModal();
 
     } catch (err) {

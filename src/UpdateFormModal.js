@@ -16,7 +16,7 @@ class BookFormModal extends React.Component {
     description: e.target.formDescription.value,
     email: e.target.formEmail.value,
   });
-  this.props.toggleUpdateModal();
+  
 }
    
   render() {
