@@ -5,6 +5,8 @@ import { withAuth0 } from '@auth0/auth0-react';
 import BookFormModal from "./BookFormModal";
 import UpdateFormModal from "./UpdateFormModal";
 
+const server = process.env.REACT_APP_BACKEND || 'http://localhost:3001'
+
 class BestBooks extends React.Component {
   constructor(props) {
     super(props);
@@ -30,7 +32,7 @@ class BestBooks extends React.Component {
 
   /* TODO: Make a GET request to your API to fetch books for the logged in user  */
   async componentDidMount() {
-    let bookUrl = `http://localhost:3001/books`;
+    let bookUrl = `${server}/books`;
     console.log("test");
     let config = await this.getConfig();
     try {
@@ -65,7 +67,7 @@ class BestBooks extends React.Component {
       title: e.target.formTitle.value,
       description: e.target.formDescription.value,
     }
-    let bookUrl = `http://localhost:3001/books`;
+    let bookUrl = `${server}/books`;
     let config = await this.getConfig();
     try {
       console.log("test");
@@ -81,7 +83,7 @@ class BestBooks extends React.Component {
 
   handleDelete = async (id) => {
     console.log(id);
-    let bookUrl = `http://localhost:3001/books/${id}`;
+    let bookUrl = `${server}/books/${id}`;
     let config = await this.getConfig();
     let response = await axios.delete(bookUrl, config);
     let updatedArray = this.state.books.filter(book => book._id !== id);
@@ -91,7 +93,7 @@ class BestBooks extends React.Component {
   }
 
   handleUpdate = async (bookToUpdate) => {
-    let bookUrl = `http://localhost:3001/books/${bookToUpdate._id}`;
+    let bookUrl = `${server}/books/${bookToUpdate._id}`;
     let config = await this.getConfig();
     console.log("test");
     try {
