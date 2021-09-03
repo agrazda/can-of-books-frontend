@@ -2,7 +2,6 @@ import React from 'react';
 import { Navbar, NavItem } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import './Header.css';
-import Login from './Login.js';
 import LogoutButton from './LogoutButton.js';
 import { withAuth0 } from '@auth0/auth0-react';
 
